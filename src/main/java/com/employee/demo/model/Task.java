@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -22,15 +23,15 @@ public class Task {
 	@Id
 	@Column(name = "taskname")
 	private String taskName;
-	@ManyToMany(mappedBy ="tasks")  //so instead of creating 2 new tables, it creates only 1.
+	@ManyToMany(mappedBy ="tasks") //so instead of creating 2 new tables, it creates only 1.
 	private List<Employee> employees;
-	@ManyToMany
+	@ManyToMany()
 	private List<Qualification> qualifications;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	private Task mainTask;
 	@Column(name = "status")
 	private String status;
-	@ManyToOne
+	@ManyToOne()
 	private Project project;
 	@Override
 	public String toString() {
@@ -39,7 +40,7 @@ public class Task {
 				.collect(Collectors.toList());
 		
 		return "Task [taskName=" + taskName + ", employee_IDs=" + empList + ", qualification_Names=" + qualList
-				+ ", mainTask_Name=" + mainTask.getTaskName() + ", status=" + status + ", project_Name=" + project.getProj_name() + "]";
+				+ ", mainTask_Name=" +  ", status=" + status + ", project_Name=" + project.getProjName() + "]";
 	}
 	
 	

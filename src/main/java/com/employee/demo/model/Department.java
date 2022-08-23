@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -21,9 +23,9 @@ public class Department {
 	@Id
 	@Column(name = "depname")
 	private String depName;
-	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "department", cascade=CascadeType.ALL)
 	private List<Employee> employees;
-	// mapped by: to let the program know that this filed already exists in the
+	// mapped by: to let the program know that this field already exists in the
 	// employee table.
 	// cascade type all -> since the relation is composition, thus when we remove
 	// the department, the employees need to be removed.

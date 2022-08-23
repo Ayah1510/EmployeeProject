@@ -1,0 +1,62 @@
+
+ h1 {
+  color: #05847A;
+}
+table {
+	color: #05847A;
+}
+form {
+	color: #05847A;
+}
+option {
+	color: #05847A;
+}
+.menu h1 {
+  color: #05847A;
+  margin-left: 20px;
+  text-align: center;
+  font-size: 50px;
+}
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #05847A; 
+  
+}
+.menu li {
+	
+  float: left;
+}
+
+.menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+button{
+	  background-color: #05847A;
+	  color: white;
+}
+button a{
+	 color: white;
+}
+/* Change the link color to #111 (black) on hover */
+.menu li a:hover {
+  background-color: #111;
+}
+
+.menu active {
+  background-color: #04AA6D;
+} 
+.menu li {
+  border-right: 1px solid #bbb;
+}
+
+.menu li:last-child {
+  border-right: none;
+}

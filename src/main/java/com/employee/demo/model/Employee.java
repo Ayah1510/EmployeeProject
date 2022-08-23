@@ -1,12 +1,15 @@
 package com.employee.demo.model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,9 +28,10 @@ import lombok.Setter;
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment
-	@Column(name = "id")
-	private int id;
+	//@GeneratedValue(strategy=GenerationType.AUTO) 
+	@Column(name = "id", unique=true, nullable = false)
+    @Basic(fetch = FetchType.EAGER)
+	private  int id;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "birthDate")
@@ -36,14 +40,14 @@ public class Employee {
 	private int phone;
 	@Column(name = "gender")
 	private String gender;
-	@ManyToMany
+	@ManyToMany()
 	private List<Task> tasks;
-	@ManyToMany
+	@ManyToMany()
 	private List<Qualification> qualifications;
-	@ManyToOne
-	@JoinColumn(name = "department")
+	@ManyToOne()
+	@JoinColumn(name = "department", nullable=false)
 	private Department department;
-	@OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "manager", cascade=CascadeType.ALL)
 	private List<Project> projects;
 
 	@Override
@@ -51,7 +55,7 @@ public class Employee {
 		List<String> tasksList = tasks.stream().map(tasks -> tasks.getTaskName()).collect(Collectors.toList());
 		List<String> qualList = qualifications.stream().map(qualifications -> qualifications.getQualificationName())
 				.collect(Collectors.toList());
-		List<String> projList = projects.stream().map(projects -> projects.getProj_name()).collect(Collectors.toList());
+		List<String> projList = projects.stream().map(projects -> projects.getProjName()).collect(Collectors.toList());
 		return "Employee [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", phone=" + phone + ", gender="
 				+ gender + ", task_Names=" + tasksList + ", qualification_Names=" + qualList + ", department="
 				+ department.getDepName() + ", project_Names=" + projList + "]";

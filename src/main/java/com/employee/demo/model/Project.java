@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,19 +23,19 @@ public class Project {
 
 	@Id
 	@Column(name = "proj_name")
-	private String proj_name;
+	private String projName;
 	@Column(name = "details")
 	private String details;
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "manager")
 	private Employee manager;
-	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "project",cascade=CascadeType.ALL)
 	private List<Task> tasks;
 
 	@Override
 	public String toString() {
 		List<String> tasksList = tasks.stream().map(tasks -> tasks.getTaskName()).collect(Collectors.toList());
-		return "Project [proj_name=" + proj_name + ", details=" + details + ", manager=" + manager.getId()
+		return "Project [proj_name=" + projName + ", details=" + details + ", manager=" + manager.getId()
 				+ ", task_Names=" + tasksList + "]";
 	}
 

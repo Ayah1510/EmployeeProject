@@ -6,26 +6,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="http://yui.yahooapis.com/3.5.1/build/cssreset/cssreset-min.css">
 <link rel="stylesheet" href="/css/styles.css">
-<title>Insert title here</title>
+<title>Qualifications</title>
 </head>
-
 <body>
-
 	<div class="menu">
-		<h1>Employee Project</h1>
 		<ul>
 			<li><a href="${ContextRoot}/Employee/${employee.id}">Employees</a></li>
 			<li><a href="${ContextRoot}/Project/${employee.id}">Projects</a></li>
 			<li><a href="${ContextRoot}/Task/${employee.id}">Tasks</a></li>
 			<li><a href="${ContextRoot}/Department/${employee.id}">Departments</a></li>
 			<li><a href="${ContextRoot}/Qualification/${employee.id}">Qualifications</a></li>
-
 		</ul>
 	</div>
-
-
+	<div align="center">
+		<h1>List of Qualifications</h1>
+		<table border="1" cellpadding="5">
+			<tr>
+				<th>Name</th>
+				<th>Delete</th>
+			</tr>
+			<c:forEach var="qualification" items="${qualifications}">
+				<tr>
+					<td><c:out value="${qualification.qualificationName}" /></td>
+					<td><a
+						href="${ContextRoot}/DeleteQualification/${qualification.qualificationName}">Delete</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	<button>
+		<a href="${contextRoot}/AddQualification">Add New Qualification</a>
+	</button>
 </body>
 </html>

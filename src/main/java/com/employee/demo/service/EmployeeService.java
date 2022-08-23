@@ -19,4 +19,21 @@ public class EmployeeService {
 	public List<Employee> findAll(){
 		return employeeRepository.findAll();
 	}
+	
+	public Employee findById(int id) {
+		if(employeeRepository.findById(id).isPresent()) {
+			return employeeRepository.findById(id).get();
+		}
+		return null;
+	}
+	
+	public void save(Employee employee) {
+		employeeRepository.save(employee);
+	}
+	
+	public void delete(int id) {
+		Employee employee = findById(id);
+		employeeRepository.delete(employee);
+	}
+
 }
